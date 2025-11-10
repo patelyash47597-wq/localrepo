@@ -34,7 +34,7 @@ const roles: RoleCard[] = [
     title: "UI/UX Designer",
     description: "Design user-friendly interface",
     icon: "🎨",
-    image: "https://images.unsplash.com/photo-1542171649-7847adc966b1?w=500&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop",
     bgColor: "from-purple-200 to-purple-300",
   },
 ];
