@@ -8,10 +8,18 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    fs: {
-      allow: ["./client", "./shared"],
-      deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
-    },
+    fs: (() => {
+      // Resolve absolute paths to avoid Windows path/allow-list issues
+      const projectRoot = path.resolve(__dirname);
+      const clientDir = path.resolve(projectRoot, "client");
+      const sharedDir = path.resolve(projectRoot, "shared");
+
+      return {
+        // allow dev server to read files from client, shared and repo root
+        allow: [clientDir, sharedDir, projectRoot],
+        deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
+      };
+    })(),
   },
   build: {
     outDir: "dist/spa",
